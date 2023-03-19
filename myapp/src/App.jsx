@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import Card from './Componentes/Card';
 import fetchData from './Services/api';
+import initialData from './halpers/initialData';
+import Footer from './Componentes/Footer';
 
 function App() {
   const [city, setCity] = useState('');
-  // const [data, setData] = useState('');
+  const [data, setData] = useState(initialData);
 
   const handleSubmit = (event) => {
     event.preventDefault(); // O preventDefault vai parar o comportamento padrão do evento que seria de recarregar a pagina
     
     fetchData(city).then((response) => {
-      console.log(response);
+      setData(response);
     })
   }
 
@@ -31,8 +33,8 @@ function App() {
             Pesquisar
         </button>
       </form>
-      {city}
-      <Card />
+      <Card data={data} />
+      <Footer />
     </div>
   );
 }
