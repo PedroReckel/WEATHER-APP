@@ -9,11 +9,13 @@ function App() {
   const [data, setData] = useState(initialData);
 
   const handleSubmit = (event) => {
-    event.preventDefault(); // O preventDefault vai parar o comportamento padrão do evento que seria de recarregar a pagina
+    if(city !== '') {
+      event.preventDefault(); // O preventDefault vai parar o comportamento padrão do evento que seria de recarregar a pagina
     
-    fetchData(city).then((response) => {
-      setData(response);
-    })
+      fetchData(city).then((response) => {
+        setData(response);
+      })
+    }
   }
 
   return (
